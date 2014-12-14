@@ -34,5 +34,3 @@ def run():
             client.execute(args.action)
 
 
-if __name__ == '__main__':
-    run()
