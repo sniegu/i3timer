@@ -27,6 +27,10 @@ class Timer(object):
     def running(self):
         return datetime.datetime.now() - self.last_start if self.last_start is not None else None
 
+    @property
+    def is_running(self):
+        return self.last_start is not None
+
     def get_state(self):
         return {'current': self.current, 'running': self.running}
 
@@ -36,6 +40,12 @@ class Timer(object):
     def pause(self):
         self.accumulator = self.current
         self.last_start = None
+
+    def toggle(self):
+        if self.is_running:
+            self.pause()
+        else:
+            self.start()
 
     def stop(self):
         self.last_start = None
