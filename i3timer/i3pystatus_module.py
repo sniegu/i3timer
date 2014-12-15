@@ -33,7 +33,7 @@ class TimerModule(IntervalModule):
                 self._status = []
 
         except Exception as e:
-            self._status = [{ 'full_text': 'timer', 'color': solarized.red }]
+            self._status = [{ 'full_text': 'timer: %s' % e, 'color': solarized.red }]
 
     def inject(self, json):
         if self._status:

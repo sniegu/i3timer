@@ -3,7 +3,7 @@ from multiprocessing.connection import Listener, Client
 from os import path
 import datetime
 
-address = path.expanduser('~/.i3timer/pipe')
+address = path.expanduser('~/.i3timer')
 authkey = b'i3timer'
 
 
