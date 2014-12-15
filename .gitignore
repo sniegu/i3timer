@@ -1,3 +1,5 @@
 /build
 /dist
 /i3timer.egg-info
+*.swp
+*.swo
