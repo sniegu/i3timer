@@ -1,10 +1,10 @@
 # coding=utf-8
 from multiprocessing.connection import Listener, Client
-from os import path
+from os import path, environ
 import datetime
 
-address = path.expanduser('~/.i3timer')
-authkey = b'i3timer'
+address = path.join(environ['XDG_RUNTIME_DIR'], 'i3timer')
+authkey = bytes(environ['XDG_SESSION_COOKIE'], 'ascii')
 
 
 class Timer(object):
