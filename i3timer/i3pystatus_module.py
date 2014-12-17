@@ -7,15 +7,16 @@ from datetime import timedelta
 
 class TimerModule(IntervalModule):
 
-    # settings = (
-    #     ("url", "url to request"),
-    #     ("missing_color", "missing color"),
-    # )
-
-    # url = 'http://127.0.0.1:9000/api/status'
-    # missing_color = '#ff0000'
+    settings = (
+        ("missing_color", "missing color"),
+        ("running_color", "running color"),
+        ("paused_color", "paused color"),
+    )
 
     _status = None
+    missing_color = '#ff0000'
+    running_color = '#00ff00'
+    paused_color = '#888888'
 
 
     def init(self):
@@ -27,13 +28,13 @@ class TimerModule(IntervalModule):
             if state['current'] is not None:
                 self._status = [{
                     'full_text': str(timedelta(seconds=int(state['current'].total_seconds()))),
-                    'color': solarized.magenta if state['running'] is not None else solarized.base02,
+                    'color': self.running_color if state['running'] is not None else self.paused_color,
                 }]
             else:
                 self._status = []
 
         except Exception as e:
-            self._status = [{ 'full_text': 'timer: %s' % e, 'color': solarized.red }]
+            self._status = [{ 'full_text': 'timer: %s' % e, 'color': self.missing_color }]
 
     def inject(self, json):
         if self._status:
